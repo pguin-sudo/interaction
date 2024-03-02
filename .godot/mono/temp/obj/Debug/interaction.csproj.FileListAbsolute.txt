@@ -1,0 +1,17 @@
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\bin\Debug\interaction.deps.json
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\bin\Debug\interaction.runtimeconfig.json
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\bin\Debug\interaction.dll
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\bin\Debug\interaction.pdb
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\bin\Debug\GodotSharp.dll
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\bin\Debug\GodotSharpEditor.dll
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.csproj.AssemblyReference.cache
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.AssemblyInfoInputs.cache
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.AssemblyInfo.cs
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.csproj.CoreCompileInputs.cache
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.csproj.CopyComplete
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.dll
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\refint\interaction.dll
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.pdb
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.genruntimeconfig.cache
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\ref\interaction.dll

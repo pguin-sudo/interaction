@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dx01dmrgublha"]
+
+[ext_resource type="Script" path="res://scripts/enemy_based.gd" id="1_1wfoy"]
+[ext_resource type="SpriteFrames" uid="uid://fe6pwpequ7tj" path="res://frames/enemy.tres" id="2_i2pac"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0pumx"]
+radius = 38.0132
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d776l"]
+radius = 50.8035
+
+[node name="EnemyBased" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_1wfoy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0pumx")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_i2pac")
+autoplay = "default"
+speed_scale = 2.0
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_d776l")
+disabled = true
+
+[node name="damage_spawn" type="Node2D" parent="."]
+position = Vector2(0, -63)

@@ -1,0 +1,8 @@
+res://scenes/player.tscn
+res://frames/player.tres
+res://frames/enemy.tres
+res://scripts/player.gd
+res://scenes/enemy_based.tscn
+res://scripts/enemy_based.gd
+res://scenes/main.tscn
+res://scripts/damage_numbers.gd

@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://g8x3frjqbljw"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_2kvo0"]
+[ext_resource type="SpriteFrames" uid="uid://dg4q7yyllufv0" path="res://frames/player.tres" id="2_pdhe4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0nse"]
+radius = 16.0
+height = 86.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o7xs2"]
+radius = 32.0
+height = 110.0
+
+[node name="Player" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_2kvo0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_d0nse")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.9, 0.9)
+position_smoothing_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_pdhe4")
+autoplay = "default"
+frame = 7
+frame_progress = 0.0103625
+speed_scale = 2.0
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+shape = SubResource("CapsuleShape2D_o7xs2")
+
+[node name="damage_spawn" type="Node2D" parent="."]
+position = Vector2(0, -63)
+
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]

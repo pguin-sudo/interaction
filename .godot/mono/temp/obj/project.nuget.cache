@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "hpdRbtx0c3TnHLsAOiZ2dMUQqgJW13Isto06iv3vL6WrK77OEpFFtA41AzLOb06nF4ipqN63zkrUF8SfJryKEw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mocviu\\Documents\\GitHub\\interaction\\interaction.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mocviu\\.nuget\\packages\\godot.sourcegenerators\\4.2.1\\godot.sourcegenerators.4.2.1.nupkg.sha512",
+    "C:\\Users\\mocviu\\.nuget\\packages\\godotsharp\\4.2.1\\godotsharp.4.2.1.nupkg.sha512",
+    "C:\\Users\\mocviu\\.nuget\\packages\\godotsharpeditor\\4.2.1\\godotsharpeditor.4.2.1.nupkg.sha512",
+    "C:\\Users\\mocviu\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.26\\microsoft.netcore.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\mocviu\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.26\\microsoft.windowsdesktop.app.ref.6.0.26.nupkg.sha512",
+    "C:\\Users\\mocviu\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.26\\microsoft.aspnetcore.app.ref.6.0.26.nupkg.sha512"
+  ],
+  "logs": []
+}
