@@ -15,3 +15,4 @@ C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\refint\i
 C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.pdb
 C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.genruntimeconfig.cache
 C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\ref\interaction.dll
+C:\Users\mocviu\Documents\GitHub\interaction\.godot\mono\temp\obj\Debug\interaction.sourcelink.json

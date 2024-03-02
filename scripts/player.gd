@@ -7,18 +7,21 @@ var rng = RandomNumberGenerator.new()
 var enemy_inatack_range = true
 var atacking_enemies = []
 
+## cooldowns
+var last_cast_time = 0.0
+
 ## Initial Constants
 const INITIAL_HEALTH = 100.0
 const INITIAL_REGENERATION = 1.0
-const INITIAL_DAMAGE = 1
+const INITIAL_DAMAGE = 25
 const INITIAL_PROTECTION = 0.2
-const INITIAL_SPIKES = 0.1
+const INITIAL_SPIKES = 0
 const INITIAL_SPEED = 300.0
 # const INITIAL_RECHARGE_SPEED = 1.0
 const INITIAL_DURATION_OF_SPELLS = 1.0
 const INITIAL_SPELL_SIZE = 1.0
-const INITIAL_CRITICAL_STRIKE_POWER = 1.5
-const INITIAL_CRITICAL_HIT_CHANCE = 0.05
+const INITIAL_CRITICAL_STRIKE_POWER = 5
+const INITIAL_CRITICAL_HIT_CHANCE = 0.5
 const INITIAL_CHARACTER_SIZE = 1.0
 const INITIAL_ENLIGHTENMENT = 1.0
 
@@ -62,7 +65,7 @@ func player():
 	pass
 	
 func move():
-	var horizontal = Input.get_axis("ui_left", "ui_right")
+	var horizontal = Input.get_axis("ui_left", "ui_right") 
 	var vertical = Input.get_axis("ui_up", "ui_down")
 	if horizontal or vertical:
 		velocity.x = horizontal * INITIAL_SPEED * speed_coefficient + speed_increase
@@ -91,7 +94,11 @@ func check_damage():
 			enemy.take_damage(take_damage(_attack_info))
 
 func cast():
-	return
+	var current_time = Time.get_ticks_msec() / 1000.0
+	if current_time - last_cast_time < 1 * recharge_speed_coefficient + recharge_speed_increase:
+		return
+	last_cast_time = current_time 
+		
 	if atacking_enemies == []:
 		return
 		
@@ -128,11 +135,20 @@ func take_damage(damage, is_critical = false):
 	DamageNumbers.display_number(damage, $damage_spawn.global_position, is_critical)
 	if health_current <= 0:
 		die()
-
+	if damage * (INITIAL_SPIKES * spikes_coefficient + speed_increase) == 0:
+		return null
 	return damage * (INITIAL_SPIKES * spikes_coefficient + speed_increase)
 
 func die():
-	print('Died')
+	var death_sound = preload("res://sounds/death_sound.mp3")
+	var sound_player = AudioStreamPlayer.new()
+	sound_player.stream = death_sound
+	add_child(sound_player)
+	sound_player.play()
+
+	var death_screen_preload = preload("res://scenes/interface/death_screen.tscn")
+	var death_screen = death_screen_preload.instantiate()
+	get_tree().root.add_child(death_screen)
 
 func _on_player_hitbox_body_entered(body):
 	if body.has_method('enemy') and body.has_method('register_enemy') and body.has_method('get_attack_info'):

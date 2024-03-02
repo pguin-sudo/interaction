@@ -30,3 +30,5 @@ disabled = true
 
 [node name="damage_spawn" type="Node2D" parent="."]
 position = Vector2(0, -63)
+
+[node name="skills" type="Node" parent="."]

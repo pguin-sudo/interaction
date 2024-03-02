@@ -6,3 +6,10 @@ res://scenes/enemy_based.tscn
 res://scripts/enemy_based.gd
 res://scenes/main.tscn
 res://scripts/damage_numbers.gd
+res://scenes/death_screen.tscn
+res://scenes/interface/death_screen.tscn
+res://scripts/interface/death_screen.gd
+res://scripts/abilities/ability.gd
+res://scripts/abilities/strong_interaction/force_field.gd
+res://scripts/abilities/strong_interaction.gd
+res://scripts/abilities.gd

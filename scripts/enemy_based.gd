@@ -40,6 +40,8 @@ func register_enemy(id):
 	return self
 	
 func take_damage(damage, is_critical = false):
+	if damage == null:
+		return
 	var actual_damage = damage * (1 - (INITIAL_PROTECTION * protection_coefficient + protection_increase))
 	health_current -= actual_damage
 	DamageNumbers.display_number(damage, $damage_spawn.global_position, is_critical)
@@ -54,7 +56,7 @@ func _physics_process(_delta):
 	taret_position = (player_position - position).normalized()
 	
 	if position.distance_to(player_position) < DETECTION_RANGE:
-		if position.distance_to(player_position) > 100:
+		if position.distance_to(player_position) > 20:
 			velocity = taret_position * SPEED
 			move_and_slide()
 	

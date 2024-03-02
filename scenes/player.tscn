@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://g8x3frjqbljw"]
+[gd_scene load_steps=6 format=3 uid="uid://g8x3frjqbljw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2kvo0"]
 [ext_resource type="SpriteFrames" uid="uid://dg4q7yyllufv0" path="res://frames/player.tres" id="2_pdhe4"]
+[ext_resource type="Script" path="res://scripts/abilities/strong_interaction/force_field.gd" id="3_qqs8m"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0nse"]
 radius = 16.0
@@ -37,6 +38,11 @@ shape = SubResource("CapsuleShape2D_o7xs2")
 
 [node name="damage_spawn" type="Node2D" parent="."]
 position = Vector2(0, -63)
+
+[node name="abilities" type="Node" parent="."]
+
+[node name="ForceFieldAbility" type="Node" parent="abilities"]
+script = ExtResource("3_qqs8m")
 
 [connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
