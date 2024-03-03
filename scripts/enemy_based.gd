@@ -1,22 +1,23 @@
+class_name EnemyBased
 extends CharacterBody2D
 
-const DAMAGE = 15.0
-const SPEED = 100
-const DETECTION_RANGE = 3000
+var DAMAGE = 15.0
+var SPEED = 100
+var DETECTION_RANGE = 3000
 
-const INITIAL_COOLDOWN = 1.0
+var INITIAL_COOLDOWN = 1.0
 var cooldown_coefficient = 1
 var cooldown_increase = 0
 var current_cooldown = 0
 
-const INITIAL_PROTECTION = 0
+var INITIAL_PROTECTION = 0
 var protection_coefficient = 1
 var protection_increase = 0
 
-const INITIAL_health = 50
+var INITIAL_HEALTH = 50
 var health_coefficient = 1
 var health_increase = 0
-var health_current = INITIAL_health * health_coefficient + health_increase
+var health_current = INITIAL_HEALTH * health_coefficient + health_increase
 
 var player_position
 var taret_position

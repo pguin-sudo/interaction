@@ -1,6 +1,8 @@
-res://scripts/interface
+res://scenes
 res://scripts
+res://shaders
+res://sprites/abilities
+res://scripts/interface
 res://sprites
 res://tile_sets
 res://frames
-res://scenes

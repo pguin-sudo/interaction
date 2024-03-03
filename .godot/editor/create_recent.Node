@@ -1,6 +1,9 @@
+CharacterBody2D
+Node2D
+CPUParticles2D
+AnimatedSprite2D
 ForceFieldAbility
 Node
-Node2D
 Button
 Label
 TextEdit
@@ -9,6 +12,4 @@ SubViewport
 Window
 CollisionShape2D
 Area2D
-AnimatedSprite2D
 Camera2D
-CharacterBody2D

@@ -18,6 +18,7 @@ shape = SubResource("CircleShape2D_0pumx")
 one_way_collision_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+y_sort_enabled = true
 sprite_frames = ExtResource("2_i2pac")
 autoplay = "default"
 speed_scale = 2.0

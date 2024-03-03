@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://36cmohghim66"]
+
+[ext_resource type="Script" path="res://scripts/tee_enemy.gd" id="1_ik3du"]
+[ext_resource type="SpriteFrames" uid="uid://fe6pwpequ7tj" path="res://frames/enemy.tres" id="2_a6b87"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2cfn4"]
+radius = 38.0132
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3jwyv"]
+radius = 50.8035
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+position = Vector2(0, -1113)
+script = ExtResource("1_ik3du")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2cfn4")
+one_way_collision_margin = 0.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.619608, 0.435294, 0.588235, 1)
+y_sort_enabled = true
+sprite_frames = ExtResource("2_a6b87")
+autoplay = "default"
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CircleShape2D_3jwyv")
+disabled = true
+
+[node name="damage_spawn" type="Node2D" parent="."]
+position = Vector2(0, -63)
+
+[node name="skills" type="Node" parent="."]

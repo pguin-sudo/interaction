@@ -7,9 +7,6 @@ var rng = RandomNumberGenerator.new()
 var enemy_inatack_range = true
 var atacking_enemies = []
 
-## cooldowns
-var last_cast_time = 0.0
-
 ## Initial Constants
 const INITIAL_HEALTH = 100.0
 const INITIAL_REGENERATION = 1.0
@@ -93,42 +90,11 @@ func check_damage():
 		if _attack_info != null:
 			enemy.take_damage(take_damage(_attack_info))
 
-func cast():
-	var current_time = Time.get_ticks_msec() / 1000.0
-	if current_time - last_cast_time < 1 * recharge_speed_coefficient + recharge_speed_increase:
-		return
-	last_cast_time = current_time 
-		
-	if atacking_enemies == []:
-		return
-		
-	var target = null
-	for enemy in atacking_enemies:
-		if enemy == null:
-			continue
-		elif target == null:
-			target = enemy
-		elif position.distance_to(target.position) > position.distance_to(enemy.position):
-			target = enemy
-			
-	if target != null:
-		var critical_hit_chance = INITIAL_CRITICAL_HIT_CHANCE * critical_hit_chance_coefficient + critical_hit_chance_increase
-		
-		var damage = INITIAL_DAMAGE * damage_coefficient + damage_increase
-		if rng.randf_range(0, 1) < critical_hit_chance:
-			damage = damage * INITIAL_CRITICAL_STRIKE_POWER * critical_strike_power_coefficient + critical_strike_power_increase
-			target.take_damage(damage, true)
-			return
-		target.take_damage(damage)
-		
-
 func _physics_process(delta):
 	move()
 	check_health(delta)
 	check_damage()
-	cast()
 	
-
 func take_damage(damage, is_critical = false):
 	var actual_damage = damage * (1 - (INITIAL_PROTECTION * protection_coefficient + protection_increase))
 	health_current -= actual_damage
