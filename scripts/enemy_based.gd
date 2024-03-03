@@ -36,6 +36,29 @@ func get_attack_info():
 		return DAMAGE
 	return null
 	
+func apply_slow(slow_amount, duration):
+	if slow_amount == 1:
+		var speed_before = SPEED
+		SPEED = 0
+		await get_tree().create_timer(duration).timeout
+		SPEED += speed_before
+	else:
+		SPEED *= 1 - slow_amount
+		await get_tree().create_timer(duration).timeout
+		SPEED /= 1 - slow_amount
+
+	
+func apply_weakness(weakness_amount, duration):
+	if weakness_amount == 1:
+		var damage_before = DAMAGE
+		DAMAGE = 0
+		await get_tree().create_timer(duration).timeout
+		DAMAGE += damage_before
+	else:
+		DAMAGE *= 1 - weakness_amount
+		await get_tree().create_timer(duration).timeout
+		DAMAGE /= 1 - weakness_amount
+	
 func register_enemy(id):
 	current_id = id
 	return self

@@ -37,9 +37,10 @@ func activate():
 	get_tree().create_timer(modified_duration).timeout.connect(_on_force_field_timeout)
 	field_effect.set_visible(true)
 	
-	for i in range(int(modified_duration * 2)):
-		apply_damage_to_enemies_in_radius()
-		await get_tree().create_timer(0.5).timeout
+	if damage_on_activation > 0:
+		for i in range(int(modified_duration * 2)):
+			apply_damage_to_enemies_in_radius()
+			await get_tree().create_timer(0.5).timeout
 
 func apply_damage_to_enemies_in_radius():
 	var detection_area = Area2D.new()
@@ -79,7 +80,7 @@ func upgrade_hyperconnection():
 	speed_boost = 50.0
 	health_regeneration_boost = 2.0
 func upgrade_singlet_compression():
-	damage_on_activation = 3.0 
+	damage_on_activation = 3.0
 func upgrade_enhanced_durability():
 	enhanced_duration = 3.0
 	enhanced_defense = 10.0

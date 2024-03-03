@@ -7,3 +7,5 @@ res://scenes/enemy_based.tscn
 res://scripts/enemy_based.gd
 res://scripts/tee_enemy.gd
 res://scenes/tee_enemy.tscn
+res://scripts/abilities/weak_interaction.gd
+res://scripts/player.gd

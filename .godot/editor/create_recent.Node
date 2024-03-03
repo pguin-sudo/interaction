@@ -1,3 +1,4 @@
+WeakInteractionAbility
 CharacterBody2D
 Node2D
 CPUParticles2D
@@ -12,4 +13,3 @@ SubViewport
 Window
 CollisionShape2D
 Area2D
-Camera2D
