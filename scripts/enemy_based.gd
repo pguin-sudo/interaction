@@ -1,6 +1,9 @@
 class_name EnemyBased
 extends CharacterBody2D
 
+## Libs
+var rng = RandomNumberGenerator.new()
+
 var DAMAGE = 15.0
 var SPEED = 100
 var DETECTION_RANGE = 3000
@@ -19,9 +22,9 @@ var health_coefficient = 1
 var health_increase = 0
 var health_current = INITIAL_HEALTH * health_coefficient + health_increase
 
-var player_position
-var taret_position
 var current_id = 0
+
+var global_target = null
 
 @onready var player = $"../Player"
 
@@ -37,7 +40,7 @@ func get_attack_info():
 	return null
 	
 func apply_slow(slow_amount, duration):
-	if slow_amount == 1:
+  if slow_amount == 1:
 		var speed_before = SPEED
 		SPEED = 0
 		await get_tree().create_timer(duration).timeout
@@ -47,6 +50,10 @@ func apply_slow(slow_amount, duration):
 		await get_tree().create_timer(duration).timeout
 		SPEED /= 1 - slow_amount
 
+func apply_disorientation(duration):
+  global_target = Vector2(rng.randf_range(-1000, 1000), rng.randf_range(-1000, 1000))
+  await get_tree().create_timer(duration).timeout
+  global_target = null
 	
 func apply_weakness(weakness_amount, duration):
 	if weakness_amount == 1:
@@ -76,8 +83,13 @@ func die():
 	queue_free()
 
 func _physics_process(_delta):
-	player_position = player.position
-	taret_position = (player_position - position).normalized()
+  var taret_position
+  if global_target != null:
+    target_position = global_target
+  else:	  
+    var player_position
+    player_position = player.position
+	  taret_position = (player_position - position).normalized()
 	
 	if position.distance_to(player_position) < DETECTION_RANGE:
 		if position.distance_to(player_position) > 20:
