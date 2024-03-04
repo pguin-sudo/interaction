@@ -31,6 +31,9 @@ var global_target = null
 func enemy():
 	pass
 	
+func _ready():
+	apply_disorientation(10)
+	
 func get_attack_info():
 	var current_time = Time.get_ticks_msec() / 1000.0
 	if current_time - current_cooldown >= INITIAL_COOLDOWN * cooldown_increase + cooldown_coefficient:
@@ -40,7 +43,7 @@ func get_attack_info():
 	return null
 	
 func apply_slow(slow_amount, duration):
-  if slow_amount == 1:
+	if slow_amount == 1:
 		var speed_before = SPEED
 		SPEED = 0
 		await get_tree().create_timer(duration).timeout
@@ -51,9 +54,9 @@ func apply_slow(slow_amount, duration):
 		SPEED /= 1 - slow_amount
 
 func apply_disorientation(duration):
-  global_target = Vector2(rng.randf_range(-1000, 1000), rng.randf_range(-1000, 1000))
-  await get_tree().create_timer(duration).timeout
-  global_target = null
+	global_target = Vector2(global_position.x + rng.randf_range(-100, 100), global_position.y + rng.randf_range(-1000, 100))
+	await get_tree().create_timer(duration).timeout
+	global_target = null
 	
 func apply_weakness(weakness_amount, duration):
 	if weakness_amount == 1:
@@ -83,17 +86,15 @@ func die():
 	queue_free()
 
 func _physics_process(_delta):
-  var taret_position
-  if global_target != null:
-    target_position = global_target
-  else:	  
-    var player_position
-    player_position = player.position
-	  taret_position = (player_position - position).normalized()
+	var target_position: Vector2 
+	if global_target != null:
+		target_position = (global_target - position).normalized()
+	else:
+		var player_position
+		player_position = player.position
+		target_position = (player_position - position).normalized()
 	
-	if position.distance_to(player_position) < DETECTION_RANGE:
-		if position.distance_to(player_position) > 20:
-			velocity = taret_position * SPEED
+	if position.distance_to(target_position) < DETECTION_RANGE:
+		if position.distance_to(target_position) > 20:
+			velocity = target_position * SPEED
 			move_and_slide()
-	
-

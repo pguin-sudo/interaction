@@ -171,14 +171,14 @@ script = ExtResource("5_xfvju")
 modulate = Color(0.882353, 0.643137, 0.709804, 1)
 z_index = -1
 y_sort_enabled = true
-scale = Vector2(1.085, 1.085)
+scale = Vector2(0.77, 0.77)
 sprite_frames = SubResource("SpriteFrames_83jog")
 autoplay = "default"
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="abilities/WeakInteractionAbility/AnimatedSprite2D"]
+visible = false
 
 [node name="StrongInteractionAbility" type="Node2D" parent="abilities"]
-scale = Vector2(0.89, 0.89)
 script = ExtResource("3_qqs8m")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="abilities/StrongInteractionAbility"]
@@ -197,7 +197,6 @@ script = ExtResource("6_slm65")
 modulate = Color(0.85098, 0.317647, 1, 1)
 z_index = -1
 y_sort_enabled = true
-scale = Vector2(0.7, 0.7)
 sprite_frames = SubResource("SpriteFrames_83jog")
 autoplay = "default"
 

@@ -4,7 +4,7 @@ extends Ability
 ## Libs
 var rng = RandomNumberGenerator.new()
 
-var damage_on_activation: float = 5.0
+var damage_on_activation: float = 0.0
 var duration: float = 5.0
 var weaken_amount: float = 0.2 
 var slow_amount: float = 0.5 
@@ -12,7 +12,7 @@ var decay_radius: float = 150.0
 var toxic_damage: float = 1.0
 var mutation_chance: float = 0.3 
 
-@onready var player = $"../.."
+@onready var player: Player = $"../.."
 @onready var decay_effect = $AnimatedSprite2D
 
 func _ready():
@@ -21,6 +21,7 @@ func _ready():
 	decay_effect.set_visible(false)
 
 func activate():
+	print('!!!', global_position)
 	print("Activating WeakInteractionAbility")
 	var modified_duration = duration * player.duration_of_spells_coefficient + player.duration_of_spells_increase
 	get_tree().create_timer(modified_duration).timeout.connect(_on_decay_timeout)
@@ -31,19 +32,10 @@ func activate():
 		await get_tree().create_timer(0.5).timeout
 
 func apply_decay_to_enemies_in_radius():
-	var detection_area = Area2D.new()
-	var collision_shape = CollisionShape2D.new()
-	collision_shape.shape = CircleShape2D.new()
-	collision_shape.shape.radius = decay_radius * player.spell_size_coefficient + player.spell_size_increase
-	detection_area.add_child(collision_shape)
-	add_child(detection_area)
-
-	await get_tree().create_timer(0.1).timeout
-	
-	var damage = damage_on_activation * player.damage_coefficient + player.damage_increase
-	var enemies = detection_area.get_overlapping_bodies()
-	for enemy in enemies:
-		if enemy.has_method("enemy"):
+	if damage_on_activation > 0:
+		var enemies = await Enemies.get_neighbors(global_position, decay_radius * player.spell_size_coefficient + player.spell_size_increase)
+		var damage = damage_on_activation * player.damage_coefficient + player.damage_increase
+		for enemy in enemies:
 			if rng.randf_range(0, 1) < mutation_chance:
 				enemy.apply_slow(0, duration)
 			enemy.apply_weakness(weaken_amount, duration)
@@ -53,8 +45,6 @@ func apply_decay_to_enemies_in_radius():
 				enemy.take_damage(damage, true)
 				continue
 			enemy.take_damage(damage, false)
-	
-	detection_area.queue_free()
 
 func _on_decay_timeout():
 	print("WeakInteractionAbility ended")

@@ -17,7 +17,8 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DamageNumbers="*res://scripts/damage_numbers.gd"
+DamageNumbers="*res://scripts/interface/damage_numbers.gd"
+Enemies="*res://scripts/enemies.gd"
 
 [display]
 

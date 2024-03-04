@@ -1,9 +1,10 @@
+AnimatedSprite2D
+BlackHole
+Node2D
+GravityAbility
 WeakInteractionAbility
 CharacterBody2D
-Node2D
 CPUParticles2D
-AnimatedSprite2D
-ForceFieldAbility
 Node
 Button
 Label
@@ -11,5 +12,3 @@ TextEdit
 Sprite2D
 SubViewport
 Window
-CollisionShape2D
-Area2D
