@@ -1,5 +1,6 @@
 extends Node
 
+## Libs
 var rng = RandomNumberGenerator.new()
 
 func display_number(value: int, position: Vector2, is_critical: bool = false):

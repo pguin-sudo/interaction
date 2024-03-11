@@ -8,16 +8,18 @@ var rng = RandomNumberGenerator.new()
 var enemy_inatack_range = true
 var atacking_enemies = []
 
+## Abilities
+var abilities = []
+
+## Score Points
+var score_points: int = 0
+
 ## Initial Constants
 const INITIAL_HEALTH = 100.0
 const INITIAL_REGENERATION = 1.0
-const INITIAL_DAMAGE = 25
 const INITIAL_PROTECTION = 0.2
 const INITIAL_SPIKES = 0
 const INITIAL_SPEED = 300.0
-# const INITIAL_RECHARGE_SPEED = 1.0
-const INITIAL_DURATION_OF_SPELLS = 1.0
-const INITIAL_SPELL_SIZE = 1.0
 const INITIAL_CRITICAL_STRIKE_POWER = 5
 const INITIAL_CRITICAL_HIT_CHANCE = 0.5
 const INITIAL_CHARACTER_SIZE = 1.0
@@ -30,7 +32,7 @@ var damage_coefficient = 1.0
 var protection_coefficient = 1.0
 var spikes_coefficient = 1.0
 var speed_coefficient = 1.0
-var recharge_speed_coefficient = 1.0
+var cooldown_coefficient = 1.0
 var duration_of_spells_coefficient = 1.0
 var spell_size_coefficient = 1.0
 var critical_strike_power_coefficient = 1.0
@@ -45,7 +47,7 @@ var damage_increase = 0.0
 var protection_increase = 0.0
 var spikes_increase = 0.0
 var speed_increase = 0.0
-var recharge_speed_increase = 0.0
+var cooldown_increase = 0.0
 var duration_of_spells_increase = 0.0
 var spell_size_increase = 0.0
 var critical_strike_power_increase = 0.0
@@ -53,11 +55,17 @@ var critical_hit_chance_increase = 0.0
 var character_size_increase = 0.0
 var enlightenment_increase = 0.0
 
-## Skills
-var swarn_damage = 10 
+## Abilities
+@onready var electromagnetism: Electromagnetism = $abilities/ElectromagnetismAbility
+@onready var gravity: Gravity = $abilities/GravityAbility
+@onready var strong_iteraction: StrongInteraction = $abilities/StrongInteractionAbility
+@onready var weak_interaction: WeakInteraction = $abilities/WeakInteractionAbility
 
 ## Current Stats
 var health_current = INITIAL_HEALTH * health_coefficient + health_increase 
+
+## UI
+@onready var ui: UI = $Camera2D/UI
 
 func player():
 	pass
@@ -80,8 +88,10 @@ func move():
 	move_and_slide()
 
 func check_health(delta):
-	health_current += (INITIAL_REGENERATION * regeneration_coefficient + regeneration_increase) * delta
-	health_current = min(health_current, INITIAL_HEALTH * health_coefficient + health_increase)
+	if health_current < INITIAL_HEALTH * health_coefficient + health_increase:		
+		health_current += (INITIAL_REGENERATION * regeneration_coefficient + regeneration_increase) * delta
+	elif health_current > INITIAL_HEALTH * health_coefficient + health_increase:
+		health_current = INITIAL_HEALTH * health_coefficient + health_increase
 
 func check_damage():
 	for enemy in atacking_enemies:
@@ -93,6 +103,8 @@ func check_damage():
 
 func _physics_process(delta):
 	move()
+	
+func _process(delta):
 	check_health(delta)
 	check_damage()
 	
@@ -106,22 +118,27 @@ func take_damage(damage, is_critical = false):
 		return null
 	return damage * (INITIAL_SPIKES * spikes_coefficient + speed_increase)
 
+func add_score_points(points: int):
+	score_points += points
+	ui.update_score_label(score_points)
+	
 func die():
-	var death_sound = preload("res://sounds/death_sound.mp3")
-	var sound_player = AudioStreamPlayer.new()
-	sound_player.stream = death_sound
-	add_child(sound_player)
-	sound_player.play()
+	# var death_sound = preload("res://sounds/death_sound.mp3")
+	# var sound_player = AudioStreamPlayer.new()
+	# sound_player.stream = death_sound
+	# add_child(sound_player)
+	# sound_player.play()
 
-	var death_screen_preload = preload("res://scenes/interface/death_screen.tscn")
-	var death_screen = death_screen_preload.instantiate()
-	get_tree().root.add_child(death_screen)
+	# var death_screen_preload = preload("res://scenes/interface/death_screen.tscn")
+	# var death_screen = death_screen_preload.instantiate()
+	# get_tree().root.add_child(death_screen)
+	pass
 
 func _on_player_hitbox_body_entered(body):
 	if body.has_method('enemy') and body.has_method('register_enemy') and body.has_method('get_attack_info'):
 		atacking_enemies.append(body.register_enemy(atacking_enemies.size()))
 
 func _on_player_hitbox_body_exited(body):
-	if atacking_enemies[body.current_id] != null and body.has_method('enemy') and body.has_method('register_enemy'):
+	if atacking_enemies[body.current_id] != null and body.has_method('enemy'):
 		atacking_enemies[body.current_id] = null
 		

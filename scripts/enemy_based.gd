@@ -26,13 +26,12 @@ var current_id = 0
 
 var global_target = null
 
-@onready var player = $"../Player"
+var player = null
 
+signal death_signal(by_player)
+	
 func enemy():
 	pass
-	
-func _ready():
-	apply_disorientation(10)
 	
 func get_attack_info():
 	var current_time = Time.get_ticks_msec() / 1000.0
@@ -80,21 +79,26 @@ func take_damage(damage, is_critical = false):
 	health_current -= actual_damage
 	DamageNumbers.display_number(damage, $damage_spawn.global_position, is_critical)
 	if health_current <= 0:
-		die()
+		die(true)
 
-func die():
+func die(by_player: bool):
+	emit_signal("death_signal", by_player)
 	queue_free()
+	
+func knockback(direction, force):
+	global_position += direction.normalized() * force
 
 func _physics_process(_delta):
-	var target_position: Vector2 
-	if global_target != null:
-		target_position = (global_target - position).normalized()
-	else:
-		var player_position
-		player_position = player.position
-		target_position = (player_position - position).normalized()
+	var target_position: Vector2
 	
-	if position.distance_to(target_position) < DETECTION_RANGE:
-		if position.distance_to(target_position) > 20:
-			velocity = target_position * SPEED
-			move_and_slide()
+	if global_target != null:
+		target_position = (global_target - global_position).normalized()
+	elif player != null:
+		var player_position = player.global_position
+		if global_position.distance_to(player_position) > EnemyGenerator.radius:
+			die(false)
+		target_position = (player_position - global_position).normalized()
+	
+	if global_position.distance_to(target_position) > 20:
+		velocity = target_position * SPEED
+		move_and_slide()

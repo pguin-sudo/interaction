@@ -1,73 +1,55 @@
-class_name StrongInteractionAbility
 extends Ability
+class_name StrongInteraction
 
-## Libs
-var rng = RandomNumberGenerator.new()
+# Параметры способности
+var force_field_strength: float = 1.0  # Пример параметра для демонстрации, его можно изменить в соответствии с механикой игры
+var damage: float = 10.0  # Урон от способности
+var knockback_distance: float = 100.0  # Дистанция отталкивания
+var stun_duration: float = 2.0  # Длительность оглушения
+var electromagnetic_storm_duration: float = 3.0  # Длительность электромагнитного шторма
+var neutron_explosion_damage: float = 50.0  # Урон от нейтронного взрыва
+var explosion_radius: float = 200.0  # Радиус действия взрыва
 
-var duration: float = 5.0
-var defense_boost: float = 20.0
-var extra_fields: int = 0 # Для Кварковой Стабилизации
-var speed_boost: float = 0.0 # Для Гиперсвязи
-var health_regeneration_boost: float = 0.0 # Также для Гиперсвязи
-var damage_on_activation: float = 0.0 # Для Синглетного Сжатия
-var radius: float = 125.0 # Также для Синглетного Сжатия
-var enhanced_duration: float = 0.0 # Для Усиленной Прочности
-var enhanced_defense: float = 0.0 # Также для Усиленной Прочности
-var adaptive_reduction: float = 0.0 # Для Адаптивного Поля
-
-@onready var player: Player = $"../.."
-
-@onready var field_effect = $AnimatedSprite2D
+var duration: float = 3.0
 
 func _ready():
-	cooldown = 10.0
+	cooldown = 9.0
+	ui._on_strong_interaction_used(cooldown * player.cooldown_coefficient + player.cooldown_increase)
 	start_cooldown()
-	field_effect.set_visible(false)
-	
+
 func activate():
-	print("Activating StrongInteractionAbility")
-	player.protection_increase += defense_boost + enhanced_defense
-	if speed_boost > 0 or health_regeneration_boost > 0:
-		player.speed_increase += speed_boost
-		player.regeneration_increase += health_regeneration_boost
+	print("Активация Сильного взаимодействия")
 	
-	var modified_duration = (duration + enhanced_duration) * player.duration_of_spells_coefficient + player.duration_of_spells_increase
-	get_tree().create_timer(modified_duration).timeout.connect(_on_force_field_timeout)
-	field_effect.set_visible(true)
+	# Здесь должна быть логика активации базовой способности
 	
-	if damage_on_activation > 0:
-		for i in range(int(modified_duration * 2)):
-			apply_damage_to_enemies_in_radius()
-			await get_tree().create_timer(0.5).timeout
+	var modified_duration = duration * player.duration_of_spells_coefficient + player.duration_of_spells_increase
+	
+	create_force_field()
+	
+	await get_tree().create_timer(modified_duration).timeout
+	ui._on_strong_interaction_used(cooldown * player.cooldown_coefficient + player.cooldown_increase)
+	start_cooldown()
 
-func apply_damage_to_enemies_in_radius():
-	var damage = damage_on_activation * player.damage_coefficient + player.damage_increase
-	for enemy in await Enemies.get_neighbors(global_position, radius * player.spell_size_coefficient + player.spell_size_increase):
-		if rng.randf_range(0, 1) < player.INITIAL_CRITICAL_HIT_CHANCE * player.critical_hit_chance_coefficient + player.critical_hit_chance_increase:
-			damage = damage * player.INITIAL_CRITICAL_STRIKE_POWER * player.critical_strike_power_coefficient + player.critical_strike_power_increase
-			enemy.take_damage(damage, true)
-			continue
-		enemy.take_damage(damage, false)
-	
-func _on_force_field_timeout():
-	player.protection_increase -= defense_boost + enhanced_defense
-	if speed_boost > 0 or health_regeneration_boost > 0:
-		player.speed_increase -= speed_boost
-		player.regeneration_increase -= health_regeneration_boost
-	print("StrongInteractionAbility ended")
-	field_effect.set_visible(false)
+func create_force_field():
+	print("Создание Силового Поля с усилением: ", force_field_strength)
+	# Логика создания силового поля
 
-	
-# TODO Доделать методы улучшений
-func upgrade_quark_stabilization():
-	extra_fields += 1
-func upgrade_hyperconnection():
-	speed_boost = 50.0
-	health_regeneration_boost = 2.0
-func upgrade_singlet_compression():
-	damage_on_activation = 3.0
-func upgrade_enhanced_durability():
-	enhanced_duration = 3.0
-	enhanced_defense = 10.0
-func upgrade_adaptive_field():
-	adaptive_reduction = 0.25
+func energy_pulse():
+	print("Энергетический Импульс с уроном: ", damage)
+	# Логика энергетического импульса
+
+func polar_eruption():
+	print("Полярное Извержение с уроном: ", damage, " и оглушением на ", stun_duration, " сек.")
+	# Логика полярного извержения
+
+func kinetic_discharge():
+	print("Кинетический Разряд с отбрасыванием на ", knockback_distance)
+	# Логика кинетического разряда
+
+func electromagnetic_storm():
+	print("Электромагнитный Шторм длительностью ", electromagnetic_storm_duration, " сек.")
+	# Логика электромагнитного шторма
+
+func neutron_explosion():
+	print("Нейтронный Взрыв с уроном ", neutron_explosion_damage, " в радиусе ", explosion_radius)
+	# Логика нейтронного взрыва

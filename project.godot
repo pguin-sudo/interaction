@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 DamageNumbers="*res://scripts/interface/damage_numbers.gd"
 Enemies="*res://scripts/enemies.gd"
+EnemyGenerator="*res://scripts/enemy_generator.gd"
 
 [display]
 

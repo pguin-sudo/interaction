@@ -1,8 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://cu817wgy2f875"]
+[gd_scene load_steps=6 format=3 uid="uid://cu817wgy2f875"]
 
 [ext_resource type="Texture2D" uid="uid://d1qqlum4bi2o" path="res://sprites/world/houses.png" id="1_ho312"]
 [ext_resource type="PackedScene" uid="uid://g8x3frjqbljw" path="res://scenes/player.tscn" id="2_fed4j"]
-[ext_resource type="PackedScene" uid="uid://dx01dmrgublha" path="res://scenes/enemy_based.tscn" id="3_jsx8m"]
 [ext_resource type="PackedScene" uid="uid://36cmohghim66" path="res://scenes/tee_enemy.tscn" id="4_6iag2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d6u2t"]
@@ -20,38 +19,10 @@ sources/0 = SubResource("TileSetAtlasSource_d6u2t")
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_fed4j")]
+position = Vector2(500, 500)
+platform_floor_layers = 4294967231
 
-[node name="Enemy" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(939, -344)
-
-[node name="Enemy2" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(1144, 149)
-
-[node name="Enemy3" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(828, 708)
-
-[node name="Enemy4" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(330, 1055)
-
-[node name="Enemy6" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(-824, 618)
-
-[node name="Enemy7" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(-913, 61)
-
-[node name="Enemy8" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(-797, -497)
-
-[node name="Enemy9" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(-162, -806)
-
-[node name="Enemy10" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(488, -777)
-
-[node name="Enemy5" parent="." instance=ExtResource("3_jsx8m")]
-position = Vector2(-281, 962)
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("4_6iag2")]
+[node name="CharacterBody2D" parent="." groups=["Enemy"] instance=ExtResource("4_6iag2")]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_68dmg")

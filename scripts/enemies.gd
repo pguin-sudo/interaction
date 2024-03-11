@@ -1,7 +1,5 @@
 extends Node2D
 
-var rng = RandomNumberGenerator.new()
-
 func get_neighbors(pos: Vector2, radius: float):
 	var collision_shape = CollisionShape2D.new()
 	collision_shape.shape = CircleShape2D.new()

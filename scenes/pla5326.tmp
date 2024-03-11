@@ -1,0 +1,267 @@
+[gd_scene load_steps=27 format=3 uid="uid://g8x3frjqbljw"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_2kvo0"]
+[ext_resource type="SpriteFrames" uid="uid://dg4q7yyllufv0" path="res://frames/player.tres" id="2_pdhe4"]
+[ext_resource type="Script" path="res://scripts/abilities/strong_interaction.gd" id="3_qqs8m"]
+[ext_resource type="Texture2D" uid="uid://c4m8iv2i38qum" path="res://sprites/abilities/force_field.png" id="4_as7ut"]
+[ext_resource type="Script" path="res://scripts/abilities/weak_interaction.gd" id="5_xfvju"]
+[ext_resource type="Script" path="res://scripts/abilities/gravity.gd" id="6_slm65"]
+[ext_resource type="Script" path="res://scripts/abilities/electromagnetism.gd" id="7_apx2l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d0nse"]
+radius = 16.0
+height = 86.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o7xs2"]
+radius = 32.0
+height = 110.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_21paj"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(0, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l2m7u"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(256, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kt1rf"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(512, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mexg"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(768, 0, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_402jg"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(0, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phtcr"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(256, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ksj0x"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(512, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0uew"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(768, 256, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvg0o"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(0, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7awrh"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(256, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmevb"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(512, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mirow"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(768, 512, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uk27f"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(0, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7xwh3"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(256, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mw735"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(512, 768, 256, 256)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dktvd"]
+atlas = ExtResource("4_as7ut")
+region = Rect2(768, 768, 256, 256)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_83jog"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_21paj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l2m7u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kt1rf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mexg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_402jg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phtcr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ksj0x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b0uew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvg0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7awrh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmevb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mirow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uk27f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7xwh3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mw735")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dktvd")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+y_sort_enabled = true
+motion_mode = 1
+script = ExtResource("1_2kvo0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_d0nse")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.9, 0.9)
+position_smoothing_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+y_sort_enabled = true
+sprite_frames = ExtResource("2_pdhe4")
+autoplay = "default"
+
+[node name="player_hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hitbox"]
+shape = SubResource("CapsuleShape2D_o7xs2")
+
+[node name="damage_spawn" type="Node2D" parent="."]
+position = Vector2(0, -63)
+
+[node name="abilities" type="Node2D" parent="."]
+
+[node name="WeakInteractionAbility" type="Node2D" parent="abilities"]
+script = ExtResource("5_xfvju")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="abilities/WeakInteractionAbility"]
+modulate = Color(0.882353, 0.643137, 0.709804, 1)
+z_index = -1
+y_sort_enabled = true
+scale = Vector2(1.085, 1.085)
+sprite_frames = SubResource("SpriteFrames_83jog")
+autoplay = "default"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="abilities/WeakInteractionAbility/AnimatedSprite2D"]
+
+[node name="StrongInteractionAbility" type="Node2D" parent="abilities"]
+scale = Vector2(0.89, 0.89)
+script = ExtResource("3_qqs8m")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="abilities/StrongInteractionAbility"]
+modulate = Color(0.85098, 1, 1, 1)
+z_index = -1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_83jog")
+autoplay = "default"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="abilities/StrongInteractionAbility/AnimatedSprite2D"]
+
+[node name="GravityAbility" type="Node2D" parent="abilities"]
+script = ExtResource("6_slm65")
+
+[node name="CosmicLinkParticleSystem2D" type="CPUParticles2D" parent="abilities/GravityAbility"]
+scale = Vector2(0.49, 0.49)
+lifetime = 10.45
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.14
+orbit_velocity_max = 1.19
+radial_accel_min = 2.9
+radial_accel_max = 2.9
+scale_amount_min = 1.05
+scale_amount_max = 3.5
+color = Color(1, 0.631373, 1, 1)
+
+[node name="AnomalyParticles2D" type="CPUParticles2D" parent="abilities/GravityAbility"]
+scale = Vector2(0.7, 0.7)
+lifetime = 10.45
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.14
+orbit_velocity_max = 1.19
+radial_accel_min = 2.9
+radial_accel_max = 2.9
+scale_amount_min = 1.05
+scale_amount_max = 3.5
+color = Color(1, 0.631373, 1, 1)
+
+[node name="GravityWellParticles2D" type="CPUParticles2D" parent="abilities/GravityAbility"]
+scale = Vector2(0.7, 0.7)
+lifetime = 10.45
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.14
+orbit_velocity_max = 1.19
+radial_accel_min = 2.9
+radial_accel_max = 2.9
+scale_amount_min = 1.05
+scale_amount_max = 3.5
+color = Color(1, 0.631373, 1, 1)
+
+[node name="GravityParticles2D" type="CPUParticles2D" parent="abilities/GravityAbility"]
+scale = Vector2(0.7, 0.7)
+lifetime = 10.45
+emission_shape = 1
+emission_sphere_radius = 128.0
+gravity = Vector2(0, 0)
+orbit_velocity_min = 0.14
+orbit_velocity_max = 1.19
+radial_accel_min = 2.9
+radial_accel_max = 2.9
+scale_amount_min = 1.05
+scale_amount_max = 3.5
+color = Color(1, 0.631373, 1, 1)
+
+[node name="Electromagnetism" type="Node2D" parent="abilities"]
+scale = Vector2(0.7921, 0.7921)
+script = ExtResource("7_apx2l")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="abilities/Electromagnetism"]
+modulate = Color(0.85098, 1, 1, 1)
+z_index = -1
+y_sort_enabled = true
+sprite_frames = SubResource("SpriteFrames_83jog")
+autoplay = "default"
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="abilities/Electromagnetism/AnimatedSprite2D"]
+
+[connection signal="body_entered" from="player_hitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="player_hitbox" to="." method="_on_player_hitbox_body_exited"]
