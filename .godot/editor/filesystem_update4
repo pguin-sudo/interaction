@@ -5,3 +5,4 @@ res://themes/small_box_line_style.tres
 res://frames/enemy.tres
 res://scenes/main.tscn
 res://scenes/player.tscn
+res://scripts/enemy_generator.gd
