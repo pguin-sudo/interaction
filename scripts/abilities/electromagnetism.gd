@@ -50,10 +50,9 @@ func apply_tesla_strike(target: Node):
 	target.take_damage(tesla_damage * player.damage_coefficient + player.damage_increase)
 	# Дополнительные эффекты, если необходимо
 
-func create_electric_shield():
-	print("Creating Electric Shield")
-	# Логика создания защитного щита вокруг персонажа
-	# Например, создание Area2D с CollisionShape для защиты от атак
+func polar_inversion():
+	print("Polar Inversion")
+	# Временное увеличение вампиризма 
 
 func generate_discharges():
 	print("Generating Discharges")

@@ -1,10 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://ba70rhe05uv4u"]
+[gd_scene load_steps=10 format=3 uid="uid://ba70rhe05uv4u"]
 
 [ext_resource type="Script" path="res://scripts/interface/ui.gd" id="1_ufmcc"]
 [ext_resource type="Texture2D" uid="uid://d3mqirno3s4nc" path="res://sprites/interface/abilities/electromagnetism.png" id="1_vhwkb"]
 [ext_resource type="Texture2D" uid="uid://bpb4yebfwr5iv" path="res://sprites/interface/abilities/gravity.png" id="3_bl6bt"]
 [ext_resource type="Texture2D" uid="uid://cbwoia8kl6lm3" path="res://sprites/interface/abilities/strong_interaction.png" id="4_8jn7c"]
 [ext_resource type="Texture2D" uid="uid://cub2jbwh5x428" path="res://sprites/interface/abilities/weak_interaction.png" id="5_3cfam"]
+[ext_resource type="Theme" uid="uid://cf76h7elawdva" path="res://themes/main_theme.tres" id="6_2hov8"]
+[ext_resource type="StyleBox" uid="uid://cmn3tcy2eny1h" path="res://themes/small_box_line_style.tres" id="7_w7qip"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_dp8b8"]
+color = Color(1, 1, 1, 1)
+thickness = 3
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_txycx"]
+color = Color(1, 1, 1, 0)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 0
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_ufmcc")
@@ -82,3 +94,533 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 text = "0"
+
+[node name="Abilities" type="MarginContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 45
+theme_override_constants/margin_right = 25
+theme_override_constants/margin_bottom = 25
+
+[node name="Panel" type="Panel" parent="Control/Abilities"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Control/Abilities"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Abilities/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="BackButtonHBoxContainer" type="HBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/BackButtonHBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"FlatButton"
+text = "< назад"
+flat = true
+language = "ru"
+
+[node name="ElectromagnetismHBoxContainer" type="HBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismHBoxContainer"]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_styles/panel = SubResource("StyleBoxLine_dp8b8")
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismHBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderLarge"
+text = "ЭЛЕКТРОМАГНЕТИЗМ"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismHBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_styles/panel = SubResource("StyleBoxLine_dp8b8")
+
+[node name="ElectromagnetismHBoxContainer2" type="HBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismHBoxContainer2"]
+custom_minimum_size = Vector2(135, 135)
+layout_mode = 2
+texture = ExtResource("1_vhwkb")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismHBoxContainer2"]
+custom_minimum_size = Vector2(0, 159.835)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Персонаж вызывает вокруг себя мощную магнитную бурю, которая в течение нескольких секунд наносит урон всем врагам в определенном радиусе."
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="Line" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 25
+
+[node name="ElectromagnetismMarginContainer" type="MarginContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(124.5, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_styles/panel = ExtResource("7_w7qip")
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderMedium"
+text = "УЛУЧШЕНИЯ
+"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(124.5, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_styles/panel = ExtResource("7_w7qip")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Электростатический Импульс"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 90)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "Перед активацией Магнитной Бури на месте ближайшего врага персонаж создает электростатический импульс, наносящий огромный урон по области.
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="PanelContainer3" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 10
+theme_override_styles/separator = ExtResource("7_w7qip")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Тесла-Удар"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 89.835)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "После действия Магнитной Бури персонаж выпускает электрический заряд в случайную сторону, наносящий средний урон, каждому встретившемуся врагу."
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="PanelContainer4" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 10
+theme_override_styles/separator = ExtResource("7_w7qip")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Зззап! Зззап! Зззап!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 91.94)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "Внутри Магнитной Бури создаются электрические разряды, поражающие врагов внутри радиуса действия, нанося дополнительный урон."
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="PanelContainer5" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 10
+theme_override_styles/separator = ExtResource("7_w7qip")
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Полярная Инверсия"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(0, 91.94)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "Магнитная Буря теперь может менять свою полярность, что позволяет не только наносить урон, но и восстанавливать здоровье персонажа за счет энергии  врагов."
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="PanelContainer6" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 10
+theme_override_styles/separator = ExtResource("7_w7qip")
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Короткое Замыкание"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/ElectromagnetismMarginContainer/VBoxContainer/VBoxContainer5"]
+custom_minimum_size = Vector2(0, 114.65)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "После действия Магнитной Бури между тремя случайными врагами происходит разряд, наносящий небольшой урон, и на короткое время останавливающий врагов, прикоснувшихся к нему."
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="BigAlphaLine" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 50
+theme_override_styles/separator = SubResource("StyleBoxLine_txycx")
+
+[node name="GravityHBoxContainer" type="HBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityHBoxContainer"]
+custom_minimum_size = Vector2(126.5, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_styles/panel = SubResource("StyleBoxLine_dp8b8")
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityHBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderLarge"
+text = "ГРАВИТАЦИЯ"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityHBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(126.5, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_styles/panel = SubResource("StyleBoxLine_dp8b8")
+
+[node name="GravityHBoxContainer2" type="HBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityHBoxContainer2"]
+custom_minimum_size = Vector2(135, 135)
+layout_mode = 2
+texture = ExtResource("3_bl6bt")
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityHBoxContainer2"]
+custom_minimum_size = Vector2(0, 159.835)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Персонаж создаёт гравитационный вихрь, заставляющий ближайших врагов вращаться вокруг него, получая периодический урон и эффект замедления.
+"
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="Line3" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 25
+
+[node name="GravityMarginContainer" type="MarginContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_right = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(124.5, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_styles/panel = ExtResource("7_w7qip")
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderMedium"
+text = "УЛУЧШЕНИЯ
+"
+
+[node name="PanelContainer2" type="PanelContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/HBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(124.5, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_styles/panel = ExtResource("7_w7qip")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Гравитационная Аномалия"
+horizontal_alignment = 1
+
+[node name="Description" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 112.5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "При активации создается несколько гравитационных аномалий на небольшом расстоянии от персонажа. Эти аномалии взрываются при контакте с врагом, нанося серьёзный урон и отбрасывая их. "
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="PanelContainer3" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 10
+theme_override_styles/separator = ExtResource("7_w7qip")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Сателлиты"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 89.835)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "Вокруг персонажа создаются несколько спутников, вращающихся вокруг него. Сателиты не исчезают после прекращения действия способности."
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="PanelContainer4" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 10
+theme_override_styles/separator = ExtResource("7_w7qip")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer3"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Тяготение Судьбы"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer3"]
+custom_minimum_size = Vector2(0, 112.5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "Персонаж создаёт мощное гравитационное поле, которое мгновенно притягивает всех врагов к центру. После короткой задержки, поле взрывается, нанося массивный урон всем, кто находится внутри."
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="PanelContainer5" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 10
+theme_override_styles/separator = ExtResource("7_w7qip")
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Гравитационный Скачок"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer4"]
+custom_minimum_size = Vector2(0, 112.5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "Позволяет персонажу мгновенно переместиться к выбранной точке, создавая при этом гравитационный взрыв в начальной и конечной точках перемещения. Взрывы наносят урон и отталкивают врагов."
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3
+
+[node name="PanelContainer6" type="HSeparator" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+size_flags_vertical = 4
+theme = ExtResource("6_2hov8")
+theme_override_constants/separation = 10
+theme_override_styles/separator = ExtResource("7_w7qip")
+
+[node name="VBoxContainer5" type="VBoxContainer" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer5"]
+layout_mode = 2
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"HeaderSmall"
+text = "Черная Дыра"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control/Abilities/ScrollContainer/MarginContainer/VBoxContainer/GravityMarginContainer/VBoxContainer/VBoxContainer5"]
+custom_minimum_size = Vector2(0, 112.5)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme = ExtResource("6_2hov8")
+theme_type_variation = &"TooltipLabel"
+text = "Создает мощную черную дыру в указанном месте, которая на протяжении нескольких секунд притягивает к себе всех врагов в большом радиусе, нанося им периодический урон."
+horizontal_alignment = 1
+autowrap_mode = 3
+text_overrun_behavior = 3

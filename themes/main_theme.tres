@@ -1,0 +1,13 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cf76h7elawdva"]
+
+[ext_resource type="FontFile" uid="uid://dgt5my8jcoor" path="res://fonts/lack-regular.otf" id="1_6ybq2"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_nilhr"]
+color = Color(1, 1, 1, 1)
+thickness = 3
+
+[resource]
+default_font = ExtResource("1_6ybq2")
+Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_6ybq2")
+HSeparator/styles/separator = SubResource("StyleBoxLine_nilhr")

@@ -25,7 +25,6 @@ EnemyGenerator="*res://scripts/enemy_generator.gd"
 
 window/size/viewport_width=540
 window/size/viewport_height=960
-window/size/resizable=false
 window/size/borderless=true
 window/per_pixel_transparency/allowed=true
 
