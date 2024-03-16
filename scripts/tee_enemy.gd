@@ -6,7 +6,7 @@ func enemy():
 func get_attack_info():
 	return null
 	
-func die(by_player: bool):
+func die(_by_player: bool):
 	pass
 	
 func register_enemy(id):

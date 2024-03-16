@@ -13,6 +13,7 @@ var abilities = []
 
 ## Score Points
 var score_points: int = 0
+var max_score_points: int = 1000
 
 ## Initial Constants
 const INITIAL_HEALTH = 100.0
@@ -55,11 +56,7 @@ var critical_hit_chance_increase = 0.0
 var character_size_increase = 0.0
 var enlightenment_increase = 0.0
 
-## Abilities
-@onready var electromagnetism: Electromagnetism = $abilities/ElectromagnetismAbility
-@onready var gravity: Gravity = $abilities/GravityAbility
-@onready var strong_iteraction: StrongInteraction = $abilities/StrongInteractionAbility
-@onready var weak_interaction: WeakInteraction = $abilities/WeakInteractionAbility
+@onready var abilities_manager: AbilitiesManager = get_node('abilities')
 
 ## Current Stats
 var health_current = INITIAL_HEALTH * health_coefficient + health_increase 
@@ -67,6 +64,10 @@ var health_current = INITIAL_HEALTH * health_coefficient + health_increase
 ## UI
 @onready var ui: UI = $Camera2D/UI
 
+func _ready():
+	ui.update_health(health_current, INITIAL_HEALTH * health_coefficient + health_increase)
+	ui.update_score(score_points, max_score_points)
+	
 func player():
 	pass
 	
@@ -88,7 +89,8 @@ func move():
 	move_and_slide()
 
 func check_health(delta):
-	if health_current < INITIAL_HEALTH * health_coefficient + health_increase:		
+	if health_current < INITIAL_HEALTH * health_coefficient + health_increase:
+		ui.update_health(health_current, INITIAL_HEALTH * health_coefficient + health_increase)
 		health_current += (INITIAL_REGENERATION * regeneration_coefficient + regeneration_increase) * delta
 	elif health_current > INITIAL_HEALTH * health_coefficient + health_increase:
 		health_current = INITIAL_HEALTH * health_coefficient + health_increase
@@ -101,27 +103,30 @@ func check_damage():
 		if _attack_info != null:
 			enemy.take_damage(take_damage(_attack_info))
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	move()
-	
+
 func _process(delta):
 	check_health(delta)
 	check_damage()
-	
+
 func take_damage(damage, is_critical = false):
 	var actual_damage = damage * (1 - (INITIAL_PROTECTION * protection_coefficient + protection_increase))
 	health_current -= actual_damage
-	DamageNumbers.display_number(damage, $damage_spawn.global_position, is_critical)
+	ui.update_health(health_current, INITIAL_HEALTH * health_coefficient + health_increase)
+	DamageNumbers.display_number(actual_damage, $damage_spawn.global_position, is_critical)
 	if health_current <= 0:
 		die()
-	if damage * (INITIAL_SPIKES * spikes_coefficient + speed_increase) == 0:
+	if actual_damage * (INITIAL_SPIKES * spikes_coefficient + speed_increase) == 0:
 		return null
-	return damage * (INITIAL_SPIKES * spikes_coefficient + speed_increase)
+	return actual_damage * (INITIAL_SPIKES * spikes_coefficient + speed_increase)
 
 func add_score_points(points: int):
 	score_points += points
-	ui.update_score_label(score_points)
-	
+	ui.update_score(score_points, max_score_points)
+	if score_points >= max_score_points:
+		abilities_manager.level_up()
+
 func die():
 	# var death_sound = preload("res://sounds/death_sound.mp3")
 	# var sound_player = AudioStreamPlayer.new()

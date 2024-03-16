@@ -1,2 +1,3 @@
+JSON
 Theme
 TileSet

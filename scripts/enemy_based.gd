@@ -45,27 +45,27 @@ func apply_slow(slow_amount, duration):
 	if slow_amount == 1:
 		var speed_before = SPEED
 		SPEED = 0
-		await get_tree().create_timer(duration).timeout
+		await get_tree().create_timer(duration, false).timeout
 		SPEED += speed_before
 	else:
 		SPEED *= 1 - slow_amount
-		await get_tree().create_timer(duration).timeout
+		await get_tree().create_timer(duration, false).timeout
 		SPEED /= 1 - slow_amount
 
 func apply_disorientation(duration):
 	global_target = Vector2(global_position.x + rng.randf_range(-100, 100), global_position.y + rng.randf_range(-1000, 100))
-	await get_tree().create_timer(duration).timeout
+	await get_tree().create_timer(duration, false).timeout
 	global_target = null
 	
 func apply_weakness(weakness_amount, duration):
 	if weakness_amount == 1:
 		var damage_before = DAMAGE
 		DAMAGE = 0
-		await get_tree().create_timer(duration).timeout
+		await get_tree().create_timer(duration, false).timeout
 		DAMAGE += damage_before
 	else:
 		DAMAGE *= 1 - weakness_amount
-		await get_tree().create_timer(duration).timeout
+		await get_tree().create_timer(duration, false).timeout
 		DAMAGE /= 1 - weakness_amount
 	
 func register_enemy(id):

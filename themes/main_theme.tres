@@ -11,3 +11,4 @@ default_font = ExtResource("1_6ybq2")
 Button/font_sizes/font_size = 30
 Button/fonts/font = ExtResource("1_6ybq2")
 HSeparator/styles/separator = SubResource("StyleBoxLine_nilhr")
+Label/fonts/font = ExtResource("1_6ybq2")

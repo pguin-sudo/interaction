@@ -20,29 +20,28 @@ func _ready():
 	start_cooldown()
 
 func activate():
-	print("Активация Слабого взаимодействия")
 	var modified_duration = duration * player.duration_of_spells_coefficient + player.duration_of_spells_increase
 
-	await get_tree().create_timer(modified_duration).timeout
+	await get_tree().create_timer(modified_duration, false).timeout
 	ui._on_weak_interaction_used(cooldown * player.cooldown_coefficient + player.cooldown_increase)
 	start_cooldown()
 
 func chaos_radiation():
-	print("Излучение Хаоса с усилением: ", chaos_radiation_strength)
+	pass
 	# Логика излучения хаоса
 
 func nuclear_decay():
-	print("Ядерный Распад с уроном: ", nuclear_decay_damage, " в радиусе ", decay_radius)
+	pass
 	# Логика ядерного распада
 
 func chaotic_pulse():
-	print("Хаотический Импульс снижает сопротивление к магии на ", magic_resistance_reduction*100, "% и увеличивает урон союзников на ", ally_damage_boost*100, "%")
+	pass
 	# Логика хаотического импульса
 
 func atomic_strike():
-	print("Атомный Удар с уроном ", radiation_strike_damage, " и временным ослаблением защиты")
+	pass
 	# Логика атомного удара
 
 func energy_explosion():
-	print("Энергетический Взрыв наносит урон ", energy_explosion_damage, " в радиусе ", energy_explosion_radius, " и ослабляет защиту")
+	pass
 	# Логика энергетического взрыва

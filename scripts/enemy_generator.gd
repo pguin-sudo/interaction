@@ -5,7 +5,7 @@ var rng = RandomNumberGenerator.new()
 
 var enemy_res: String = "res://scenes/enemy_based.tscn"
 var enemies: int = 0
-var max_enemies: int = 10
+var max_enemies: float = 20.0
 var radius: float = 1500
 var score_points: int = 1000
 
@@ -13,15 +13,15 @@ var score_points: int = 1000
 
 func _ready():
 	set_process(true)
-	check_enemy_count()
 	while true:
-		max_enemies = max_enemies * 1.2
-		await get_tree().create_timer(5).timeout
+		max_enemies = max_enemies * 1.01
+		await get_tree().create_timer(5, false).timeout
+		check_enemy_count()
 
 func check_enemy_count():
-	while enemies < max_enemies:
+	while enemies < int(max_enemies):
 		spawn_enemy()
-		await get_tree().create_timer(10 / enemies - max_enemies).timeout
+		await get_tree().create_timer(int(10 / enemies - max_enemies), false).timeout
 		
 func spawn_enemy():
 	var x = randf_range(-radius, radius)
@@ -38,6 +38,6 @@ func spawn_enemy():
 
 func _on_enemy_death(by_player: bool):
 	if by_player: 
-		player.add_score_points(score_points / max_enemies)
+		player.add_score_points(int(score_points / max_enemies))
 	enemies -= 1
 	check_enemy_count()
