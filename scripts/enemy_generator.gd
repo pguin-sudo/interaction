@@ -19,9 +19,9 @@ func _ready():
 		check_enemy_count()
 
 func check_enemy_count():
-	while enemies < int(max_enemies):
+	while enemies < max_enemies:
 		spawn_enemy()
-		await get_tree().create_timer(int(10 / enemies - max_enemies), false).timeout
+		await get_tree().create_timer(10.0 / enemies - max_enemies, false).timeout
 		
 func spawn_enemy():
 	var x = randf_range(-radius, radius)

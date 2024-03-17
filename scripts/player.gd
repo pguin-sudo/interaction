@@ -12,13 +12,15 @@ var atacking_enemies = []
 var abilities = []
 
 ## Score Points
+var level: int = 1
 var score_points: int = 0
 var max_score_points: int = 1000
+var total_score: int = 0
 
 ## Initial Constants
 const INITIAL_HEALTH = 100.0
 const INITIAL_REGENERATION = 1.0
-const INITIAL_PROTECTION = 0.2
+const INITIAL_PROTECTION = 0.0
 const INITIAL_SPIKES = 0
 const INITIAL_SPEED = 300.0
 const INITIAL_CRITICAL_STRIKE_POWER = 5
@@ -60,14 +62,19 @@ var enlightenment_increase = 0.0
 
 ## Current Stats
 var health_current = INITIAL_HEALTH * health_coefficient + health_increase 
+var is_dead: bool = false
 
 ## UI
 @onready var ui: UI = $Camera2D/UI
 
 func _ready():
 	ui.update_health(health_current, INITIAL_HEALTH * health_coefficient + health_increase)
-	ui.update_score(score_points, max_score_points)
-	
+	ui.update_score(score_points, max_score_points, level)
+
+func _input(event):
+	if event is InputEventKey and event.pressed and event.keycode == KEY_I:
+		abilities_manager.level_up(level)
+
 func player():
 	pass
 	
@@ -123,21 +130,21 @@ func take_damage(damage, is_critical = false):
 
 func add_score_points(points: int):
 	score_points += points
-	ui.update_score(score_points, max_score_points)
+	total_score += points
+	ui.update_score(score_points, max_score_points, level)
 	if score_points >= max_score_points:
-		abilities_manager.level_up()
+		abilities_manager.level_up(level)
 
 func die():
-	# var death_sound = preload("res://sounds/death_sound.mp3")
-	# var sound_player = AudioStreamPlayer.new()
-	# sound_player.stream = death_sound
-	# add_child(sound_player)
-	# sound_player.play()
+	var death_sound = preload("res://sounds/death_sound.mp3")
+	var sound_player = AudioStreamPlayer.new()
+	sound_player.stream = death_sound
+	add_child(sound_player)
+	sound_player.play()
 
-	# var death_screen_preload = preload("res://scenes/interface/death_screen.tscn")
-	# var death_screen = death_screen_preload.instantiate()
-	# get_tree().root.add_child(death_screen)
-	pass
+	is_dead = true
+	get_tree().paused = true
+	ui.die(level, total_score)
 
 func _on_player_hitbox_body_entered(body):
 	if body.has_method('enemy') and body.has_method('register_enemy') and body.has_method('get_attack_info'):

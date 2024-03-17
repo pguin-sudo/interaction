@@ -37,7 +37,6 @@ func get_attack_info():
 	var current_time = Time.get_ticks_msec() / 1000.0
 	if current_time - current_cooldown >= INITIAL_COOLDOWN * cooldown_increase + cooldown_coefficient:
 		current_cooldown = current_time
-		print(DAMAGE)
 		return DAMAGE
 	return null
 	

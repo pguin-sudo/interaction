@@ -9,7 +9,7 @@ var storm_duration: float = 5.0
 var storm_damage: float = 30.0
 var storm_radius: float = 200.0
 
-@onready var electrostatic_pulse = load("res://scenes/magic/electromagnetism/electrostatic_pulse.tscn")
+@onready var electrostatic_pulse_scene = load("res://scenes/magic/electromagnetism/electrostatic_pulse.tscn")
 var discharge_damage_min: float = 10.0
 var discharge_damage_max: float = 20.0
 
@@ -49,7 +49,7 @@ func base_ability():
 func electrostatic_pulse_ability():
 	var nearest_enemy: EnemyBased = await Enemies.get_nearest(global_position, 1500)
 	if nearest_enemy != null:
-		var electrostatic_pulse = electrostatic_pulse.instantiate()
+		var electrostatic_pulse = electrostatic_pulse_scene.instantiate()
 		electrostatic_pulse.position = nearest_enemy.global_position
 		electrostatic_pulse.rotation = global_rotation
 		await get_tree().create_timer(1, false).timeout

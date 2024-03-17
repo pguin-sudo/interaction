@@ -13,20 +13,21 @@ func get_upgrades(ability_id: int) -> Array:
 	return abilities[ability_id].upgrades
 
 func skip():
-	player.score_points = player.max_score_points * 0.15
-	
+	player.add_score_points(int(player.max_score_points * 0.15))
+
 func add_protection(value: float):
 	player.protection_coefficient *= value + 1
-	
+
 func add_damage(value: float):
 	player.damage_coefficient *= value + 1
-	
-func level_up():
+
+func level_up(level: int):
 	get_tree().paused = true
-	ui.level_up()
+	player.level += 1
+	ui.level_up(level, abilities)
 
 func level_up_end():
 	get_tree().paused = false
 	var max_score_points = player.max_score_points
-	player.max_score_points = max_score_points + (max_score_points * 0.2)
+	player.max_score_points = int(max_score_points + (max_score_points * 0.2))
 	player.add_score_points(-max_score_points)

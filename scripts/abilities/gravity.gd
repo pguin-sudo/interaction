@@ -61,9 +61,9 @@ func gravity_jump():
 	await get_tree().create_timer(0.1, false).timeout
 
 func black_hole(modified_duration):
-	var black_hole = load(black_hole_scene).instantiate()
+	var black_hole_instance = load(black_hole_scene).instantiate()
 	var modified_radius = black_hole_radius * player.spell_size_coefficient + player.spell_size_increase
 	var modified_damage = black_hole_damage * player.damage_coefficient + player.damage_increase
-	black_hole.start(global_position, modified_radius, modified_duration, modified_damage)
-	player.get_parent().add_child(black_hole)
+	black_hole_instance.start(global_position, modified_radius, modified_duration, modified_damage)
+	player.get_parent().add_child(black_hole_instance)
 
