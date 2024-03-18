@@ -19,14 +19,13 @@ var total_score: int = 0
 
 ## Initial Constants
 const INITIAL_HEALTH = 100.0
-const INITIAL_REGENERATION = 1.0
-const INITIAL_PROTECTION = 0.0
+const INITIAL_REGENERATION = 0.05
+const INITIAL_PROTECTION = 0.05
 const INITIAL_SPIKES = 0
 const INITIAL_SPEED = 300.0
 const INITIAL_CRITICAL_STRIKE_POWER = 5
 const INITIAL_CRITICAL_HIT_CHANCE = 0.5
 const INITIAL_CHARACTER_SIZE = 1.0
-const INITIAL_ENLIGHTENMENT = 1.0
 
 ## Coefficients - Adjust these to scale the effects of various stats
 var health_coefficient = 1.0
@@ -41,7 +40,6 @@ var spell_size_coefficient = 1.0
 var critical_strike_power_coefficient = 1.0
 var critical_hit_chance_coefficient = 1.0
 var character_size_coefficient = 1.0
-var enlightenment_coefficient = 1.0
 
 ## Increases - These can be used to apply buffs or temporary modifiers
 var health_increase = 0.0
@@ -56,7 +54,6 @@ var spell_size_increase = 0.0
 var critical_strike_power_increase = 0.0
 var critical_hit_chance_increase = 0.0
 var character_size_increase = 0.0
-var enlightenment_increase = 0.0
 
 @onready var abilities_manager: AbilitiesManager = get_node('abilities')
 

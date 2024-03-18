@@ -21,6 +21,9 @@ func _ready():
 	cooldown = 8.0
 	ui._on_electromagnetism_used(cooldown * player.cooldown_coefficient + player.cooldown_increase)
 	start_cooldown()
+	
+	## KOSTYL
+	upgrades[0] = true
 
 func activate():
 	if upgrades[0]: await electrostatic_pulse_ability()
@@ -33,6 +36,7 @@ func base_ability():
 	var modified_duration = storm_duration * player.duration_of_spells_coefficient + player.duration_of_spells_increase
 	var modified_damage = storm_damage * player.damage_coefficient + player.damage_increase
 	var modified_radius = storm_radius * player.spell_size_coefficient + player.spell_size_increase
+	print(modified_radius)
 	storm.global_scale = (Vector2(0.01, 0.01) * modified_radius)
 	
 	storm.visible = true
@@ -49,6 +53,7 @@ func base_ability():
 func electrostatic_pulse_ability():
 	var nearest_enemy: EnemyBased = await Enemies.get_nearest(global_position, 1500)
 	if nearest_enemy != null:
+		print(nearest_enemy)
 		var electrostatic_pulse = electrostatic_pulse_scene.instantiate()
 		electrostatic_pulse.position = nearest_enemy.global_position
 		electrostatic_pulse.rotation = global_rotation

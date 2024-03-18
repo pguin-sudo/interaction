@@ -23,12 +23,12 @@ func get_neighbors(pos: Vector2, radius: float) -> Array:
 func get_nearest(pos: Vector2, radius: float) -> EnemyBased:
 	var enemies: Array = await get_neighbors(pos, radius)
 	var nearest_enemy: EnemyBased = null
-	var nearest_distance: float = float('inf')
+	var nearest_distance: float = radius + 1
 
 	for enemy in enemies:
 		var dist: float = pos.distance_to(enemy.global_position)
-		if dist < nearest_distance and dist <= radius:
+		if dist < nearest_distance:
 			nearest_enemy = enemy
 			nearest_distance = dist
-
+			
 	return nearest_enemy

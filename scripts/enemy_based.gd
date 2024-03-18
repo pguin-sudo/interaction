@@ -28,6 +28,8 @@ var global_target = null
 
 var player = null
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+
 signal death_signal(by_player)
 	
 func enemy():

@@ -1,13 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://b84okhhe4jvue"]
+[gd_scene load_steps=8 format=3 uid="uid://drhx7rva3sx3a"]
 
-[ext_resource type="Texture2D" uid="uid://d3mqirno3s4nc" path="res://sprites/interface/abilities/electromagnetism.png" id="1_ue2g2"]
+[ext_resource type="AudioStream" uid="uid://rvvtd8881yj8" path="res://sounds/abilities/electromagnetism/electrostatic_pulse.wav" id="1_6spwv"]
 [ext_resource type="Script" path="res://scripts/magic/explodable_object.gd" id="2_hukix"]
-[ext_resource type="PackedScene" uid="uid://drhx7rva3sx3a" path="res://scenes/magic/electromagnetism/electrostatic_pulse_explosion.tscn" id="3_eusyg"]
 
-[node name="ElectrostaticPulse" type="Node2D"]
+[sub_resource type="Gradient" id="Gradient_sl32f"]
+offsets = PackedFloat32Array(0.522388, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
-[node name="ExplodableObject" type="Sprite2D" parent="."]
-scale = Vector2(0.125, 0.125)
-texture = ExtResource("1_ue2g2")
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0oeen"]
+gradient = SubResource("Gradient_sl32f")
+
+[sub_resource type="Curve" id="Curve_2uulb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6y4pr"]
+curve = SubResource("Curve_2uulb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_d50i2"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 750.0
+initial_velocity_max = 1250.0
+gravity = Vector3(0, 0, 0)
+scale_min = 10.0
+scale_max = 30.0
+scale_curve = SubResource("CurveTexture_6y4pr")
+color = Color(0, 0.972549, 0.972549, 1)
+color_ramp = SubResource("GradientTexture1D_0oeen")
+
+[node name="ExplosionParticle" type="GPUParticles2D"]
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_d50i2")
+one_shot = true
+explosiveness = 1.0
 script = ExtResource("2_hukix")
-explosion_particle = ExtResource("3_eusyg")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_6spwv")
+autoplay = true
