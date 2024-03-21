@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 class_name UI
 
 # Libs
@@ -10,7 +10,7 @@ var rng = RandomNumberGenerator.new()
 
 @onready var clock: Label = %Clock
 
-@onready var ability_manager: AbilitiesManager = get_parent().get_parent().get_node('abilities')
+@onready var ability_manager: AbilitiesManager = get_parent().get_parent().get_parent().get_node('abilities')
 
 ## Abilities Cooldown
 @onready var abilities_cooldown = %AbilitiesCooldown

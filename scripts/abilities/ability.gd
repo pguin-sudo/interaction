@@ -6,7 +6,7 @@ var is_ready: bool = true
 var upgrades = [false, false, false, false, false]
 
 @onready var player: Player = $"../.."
-@onready var ui: UI = $"../../Camera2D/UI"
+@onready var ui: UI = $"../../Camera2D/CanvasLayer/UI"
 
 signal ability_used
 

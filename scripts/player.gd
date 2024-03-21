@@ -62,7 +62,7 @@ var health_current = INITIAL_HEALTH * health_coefficient + health_increase
 var is_dead: bool = false
 
 ## UI
-@onready var ui: UI = $Camera2D/UI
+@onready var ui: UI = $Camera2D/CanvasLayer/UI
 
 func _ready():
 	ui.update_health(health_current, INITIAL_HEALTH * health_coefficient + health_increase)
@@ -75,9 +75,12 @@ func _input(event):
 func player():
 	pass
 	
-func move():
-	var horizontal = Input.get_axis("ui_left", "ui_right") 
-	var vertical = Input.get_axis("ui_up", "ui_down")
+func move(horizontal = null, vertical = null):
+	if horizontal == null:
+		horizontal = Input.get_axis("ui_left", "ui_right") 
+	if vertical == null:
+		vertical = Input.get_axis("ui_up", "ui_down")
+		
 	if horizontal or vertical:
 		velocity.x = horizontal * INITIAL_SPEED * speed_coefficient + speed_increase
 		velocity.y = vertical * INITIAL_SPEED * speed_coefficient + speed_increase
@@ -151,3 +154,6 @@ func _on_player_hitbox_body_exited(body):
 	if atacking_enemies[body.current_id] != null and body.has_method('enemy'):
 		atacking_enemies[body.current_id] = null
 		
+func _on_joystick_use_move_vector(move_vector: Vector2):
+	move(move_vector.x, move_vector.y)
+	print(move_vector)

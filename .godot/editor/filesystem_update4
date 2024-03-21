@@ -5,5 +5,12 @@ res://themes/main_theme.tres
 res://themes/small_box_line_style.tres
 res://frames/enemy.tres
 res://scenes/player.tscn
-res://scenes/enemy_based.tscn
+res://scenes/interface/joystick.tscn
+res://scripts/enemy_generator.gd
+res://scenes/interface/ui.tscn
+res://scripts/interface/ui.gd
+res://scripts/abilities/ability.gd
 res://scripts/player.gd
+res://scripts/interface/joystick.gd
+res://scripts/abilities/abilities_manager.gd
+res://addons/virtual_joystick/virtual_joystick_scene.tscn

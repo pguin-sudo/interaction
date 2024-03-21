@@ -2,7 +2,7 @@ extends Node2D
 class_name AbilitiesManager
 
 @onready var player: Player = $".."
-@onready var ui: UI = $"../Camera2D/UI"
+@onready var ui: UI = $"../Camera2D/CanvasLayer/UI"
 @onready var abilities = [$ElectromagnetismAbility, $GravityAbility, $StrongInteractionAbility, $WeakInteractionAbility]
 
 func set_upgrade(ability_id: int, upgrade_id: int, status: bool):
