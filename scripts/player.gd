@@ -19,8 +19,8 @@ var total_score: int = 0
 
 ## Initial Constants
 const INITIAL_HEALTH = 100.0
-const INITIAL_REGENERATION = 0.05
-const INITIAL_PROTECTION = 0.05
+const INITIAL_REGENERATION = 0.1
+const INITIAL_PROTECTION = 0.1
 const INITIAL_SPIKES = 0
 const INITIAL_SPEED = 300.0
 const INITIAL_CRITICAL_STRIKE_POWER = 5
@@ -101,6 +101,7 @@ func check_health(delta):
 		health_current += (INITIAL_REGENERATION * regeneration_coefficient + regeneration_increase) * delta
 	elif health_current > INITIAL_HEALTH * health_coefficient + health_increase:
 		health_current = INITIAL_HEALTH * health_coefficient + health_increase
+		
 
 func check_damage():
 	for enemy in atacking_enemies:
@@ -127,7 +128,13 @@ func take_damage(damage, is_critical = false):
 	if actual_damage * (INITIAL_SPIKES * spikes_coefficient + speed_increase) == 0:
 		return null
 	return actual_damage * (INITIAL_SPIKES * spikes_coefficient + speed_increase)
-
+	
+func heal(health):
+	if health_current < INITIAL_HEALTH * health_coefficient + health_increase:
+		health_current += health
+		ui.update_health(health_current, INITIAL_HEALTH * health_coefficient + health_increase)
+		DamageNumbers.display_number(-health, $damage_spawn.global_position)
+	
 func add_score_points(points: int):
 	score_points += points
 	total_score += points

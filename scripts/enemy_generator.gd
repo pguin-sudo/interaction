@@ -5,9 +5,10 @@ var rng = RandomNumberGenerator.new()
 
 var enemy_res: String = "res://scenes/enemy_based.tscn"
 var enemies: int = 0
-var max_enemies: float = 20.0
-var radius: float = 1500
-var score_points: int = 1000
+var max_enemies: float = 200.0 ## KOSTYL
+var min_radius: float = 1100.0
+var max_radius: float = 1500.0
+var score_points: int = 75
 
 @onready var player: Player = get_tree().current_scene.get_node("Player")
 
@@ -21,9 +22,10 @@ func _ready():
 func check_enemy_count():
 	while enemies < max_enemies:
 		spawn_enemy()
-		await get_tree().create_timer(10.0 / enemies - max_enemies, false).timeout
+		await get_tree().create_timer(30.0 / enemies - max_enemies, false).timeout
 		
 func spawn_enemy():
+	var radius = randf_range(min_radius, max_radius)
 	var x = randf_range(-radius, radius)
 	var y = sqrt(radius**2 - x**2)
 	if randi_range(0, 1) == 0:
@@ -38,6 +40,6 @@ func spawn_enemy():
 
 func _on_enemy_death(by_player: bool):
 	if by_player: 
-		player.add_score_points(int(score_points / max_enemies))
+		player.add_score_points(int(score_points))
 	enemies -= 1
 	check_enemy_count()

@@ -167,35 +167,44 @@ func update_health(health: int, max_health: int):
 func _on_electromagnetism_used(cooldown: float):
 	electromagnetism.value = 0
 	var start_time = Time.get_ticks_msec()
+	var start_total_pused_time = total_paused_time
 	while electromagnetism.value < electromagnetism.max_value:
-		var elapsed_time = Time.get_ticks_msec() - start_time
-		var progress = elapsed_time / (cooldown * 1000)
-		electromagnetism.value = lerp(0.0, electromagnetism.max_value, progress)
-		await get_tree().create_timer(0.5 / Engine.get_frames_per_second(), false).timeout
-		
+		if !is_paused:
+			var elapsed_time = Time.get_ticks_msec() - start_time + start_total_pused_time - total_paused_time
+			var progress = elapsed_time / (cooldown * 1000)
+			electromagnetism.value = lerp(0.0, electromagnetism.max_value, progress)
+			await get_tree().create_timer(0.5 / Engine.get_frames_per_second(), false).timeout
+
+
 func _on_gravity_used(cooldown):
 	gravity.value = 0
 	var start_time = Time.get_ticks_msec()
+	var start_total_pused_time = total_paused_time
 	while gravity.value < gravity.max_value:
-		var elapsed_time = Time.get_ticks_msec() - start_time
-		var progress = elapsed_time / (cooldown * 1000)
-		gravity.value = lerp(0.0, gravity.max_value, progress)
-		await get_tree().create_timer(0.5 / Engine.get_frames_per_second(), false).timeout
+		if !is_paused:
+			var elapsed_time = Time.get_ticks_msec() - start_time + start_total_pused_time - total_paused_time
+			var progress = elapsed_time / (cooldown * 1000)
+			gravity.value = lerp(0.0, gravity.max_value, progress)
+			await get_tree().create_timer(0.5 / Engine.get_frames_per_second(), false).timeout
 		
 func _on_strong_interaction_used(cooldown):
 	strong_interaction.value = 0
 	var start_time = Time.get_ticks_msec()
+	var start_total_pused_time = total_paused_time
 	while strong_interaction.value < strong_interaction.max_value:
-		var elapsed_time = Time.get_ticks_msec() - start_time
-		var progress = elapsed_time / (cooldown * 1000)
-		strong_interaction.value = lerp(0.0, strong_interaction.max_value, progress)
-		await get_tree().create_timer(0.5 / Engine.get_frames_per_second(), false).timeout
+		if !is_paused:
+			var elapsed_time = Time.get_ticks_msec() - start_time + start_total_pused_time - total_paused_time
+			var progress = elapsed_time / (cooldown * 1000)
+			strong_interaction.value = lerp(0.0, strong_interaction.max_value, progress)
+			await get_tree().create_timer(0.5 / Engine.get_frames_per_second(), false).timeout
 		
 func _on_weak_interaction_used(cooldown):
 	weak_interaction.value = 0
 	var start_time = Time.get_ticks_msec()
+	var start_total_pused_time = total_paused_time
 	while weak_interaction.value < weak_interaction.max_value:
-		var elapsed_time = Time.get_ticks_msec() - start_time
-		var progress = elapsed_time / (cooldown * 1000)
-		weak_interaction.value = lerp(0.0, weak_interaction.max_value, progress)
-		await get_tree().create_timer(0.5 / Engine.get_frames_per_second(), false).timeout
+		if !is_paused:
+			var elapsed_time = Time.get_ticks_msec() - start_time + start_total_pused_time - total_paused_time
+			var progress = elapsed_time / (cooldown * 1000)
+			weak_interaction.value = lerp(0.0, weak_interaction.max_value, progress)
+			await get_tree().create_timer(0.5 / Engine.get_frames_per_second(), false).timeout

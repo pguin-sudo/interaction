@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://dqhpbdgealrrc"]
+
+[ext_resource type="Texture2D" uid="uid://d3mqirno3s4nc" path="res://sprites/interface/abilities/electromagnetism.png" id="1_5e4kb"]
+[ext_resource type="Script" path="res://scripts/magic/projectile.gd" id="2_3pnf2"]
+[ext_resource type="AudioStream" uid="uid://rvvtd8881yj8" path="res://sounds/abilities/electromagnetism/electrostatic_pulse.wav" id="2_p7wod"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_chx8w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_5e4kb")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ExplosionParticle" type="AnimatedSprite2D"]
+scale = Vector2(0.01, 0.01)
+sprite_frames = SubResource("SpriteFrames_chx8w")
+script = ExtResource("2_3pnf2")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_p7wod")
+pitch_scale = 1.2
+autoplay = true

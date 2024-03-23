@@ -96,7 +96,7 @@ func _physics_process(_delta):
 		target_position = (global_target - global_position).normalized()
 	elif player != null:
 		var player_position = player.global_position
-		if global_position.distance_to(player_position) > EnemyGenerator.radius:
+		if global_position.distance_to(player_position) > EnemyGenerator.max_radius:
 			die(false)
 		target_position = (player_position - global_position).normalized()
 	

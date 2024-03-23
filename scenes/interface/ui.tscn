@@ -126,10 +126,11 @@ tint_over = Color(0.666667, 0.666667, 0.666667, 1)
 [node name="Clock" type="Label" parent="AbilitiesCooldown/VBoxContainer/HBoxContainer2"]
 unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 10
 theme = ExtResource("6_2hov8")
 theme_type_variation = &"HeaderLarge"
 text = "00:00"
+horizontal_alignment = 2
 
 [node name="Health" type="ProgressBar" parent="AbilitiesCooldown/VBoxContainer"]
 unique_name_in_owner = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://g8x3frjqbljw"]
+[gd_scene load_steps=32 format=3 uid="uid://g8x3frjqbljw"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_2kvo0"]
 [ext_resource type="SpriteFrames" uid="uid://dg4q7yyllufv0" path="res://frames/player.tres" id="2_pdhe4"]
@@ -19,6 +19,8 @@ height = 86.0
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o7xs2"]
 radius = 32.0
 height = 110.0
+
+[sub_resource type="Curve2D" id="Curve2D_r0dmo"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_21paj"]
 atlas = ExtResource("4_as7ut")
@@ -146,10 +148,6 @@ motion_mode = 1
 script = ExtResource("1_2kvo0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-limit_left = -3555
-limit_top = -3135
-limit_right = 3555
-limit_bottom = 3135
 limit_smoothed = true
 position_smoothing_enabled = true
 position_smoothing_speed = 20.0
@@ -164,7 +162,7 @@ drag_bottom_margin = 0.1
 
 [node name="CanvasLayer" type="CanvasLayer" parent="Camera2D"]
 
-[node name="Virtual joystick left" parent="Camera2D/CanvasLayer" instance=ExtResource("3_h77dh")]
+[node name="Virtual Joystick" parent="Camera2D/CanvasLayer" instance=ExtResource("3_h77dh")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_right = 1.0
@@ -173,8 +171,6 @@ offset_top = -300.0
 offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
-size_flags_horizontal = 8
-size_flags_vertical = 8
 
 [node name="UI" parent="Camera2D/CanvasLayer" instance=ExtResource("8_v5exy")]
 size_flags_horizontal = 4
@@ -197,6 +193,9 @@ shape = SubResource("CapsuleShape2D_o7xs2")
 
 [node name="damage_spawn" type="Node2D" parent="."]
 position = Vector2(0, -63)
+
+[node name="Short" type="Path2D" parent="."]
+curve = SubResource("Curve2D_r0dmo")
 
 [node name="abilities" type="Node2D" parent="."]
 script = ExtResource("4_aoxbh")

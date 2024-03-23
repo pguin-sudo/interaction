@@ -21,10 +21,16 @@ DamageNumbers="*res://scripts/interface/damage_numbers.gd"
 Enemies="*res://scripts/enemies.gd"
 EnemyGenerator="*res://scripts/enemy_generator.gd"
 
+[debug]
+
+settings/crash_handler/message="Пожалуйста, укажите это при сообщении об ошибке разработчику проекта."
+
 [display]
 
 window/size/viewport_width=540
 window/size/viewport_height=960
+window/stretch/aspect="expand"
+window/stretch/scale=0.5
 window/handheld/orientation=1
 
 [dotnet]
@@ -73,7 +79,6 @@ ui_down={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-pointing/emulate_mouse_from_touch=false
 
 [rendering]
 

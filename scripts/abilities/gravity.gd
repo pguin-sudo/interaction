@@ -4,14 +4,18 @@ class_name Gravity
 var duration: float = 5.0
 var anomaly_radius: float = 100.0
 var anomaly_damage: float = 10.0
+
 var cosmic_link_range: float = 200.0
 var cosmic_link_damage: float = 20.0
+
 var gravity_well_radius: float = 150.0
 var gravity_well_delay: float = 2.0
+
 var gravity_well_damage: float = 50.0
 var gravity_jump_distance: float = 1.0
-var black_hole_radius: float = 500.0
-var black_hole_damage: float = 1.0
+
+var black_hole_radius: float = 250.0
+var black_hole_damage: float = 5.0
 
 @onready var anomaly_effect = $AnomalyParticles2D
 @onready var black_hole_scene = "res://scenes/magic/black_hole.tscn"
