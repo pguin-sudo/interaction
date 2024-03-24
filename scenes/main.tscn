@@ -24,7 +24,6 @@ platform_floor_layers = 4294967231
 [node name="CharacterBody2D" parent="." groups=["Enemy"] instance=ExtResource("4_6iag2")]
 
 [node name="TileMap" type="TileMap" parent="."]
-visible = false
 tile_set = SubResource("TileSet_68dmg")
 format = 2
 layer_0/z_index = -100

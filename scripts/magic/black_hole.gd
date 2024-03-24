@@ -2,7 +2,7 @@ extends Node2D
 class_name BlackHole
 
 func start(pos, radius, duration, damage):
-	$AnimatedSprite2D.global_scale = Vector2(0.01, 0.01) * radius
+	$Sprite2D.global_scale = Vector2(0.04, 0.04) * radius
 	global_position = pos
 	for i in range(int(duration * 2)):
 		for enemy in await Enemies.get_neighbors(global_position, radius):

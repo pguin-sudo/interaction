@@ -12,3 +12,6 @@ res://scenes/main.tscn
 res://scenes/player.tscn
 res://scripts/abilities/electromagnetism.gd
 res://scripts/enemy_generator.gd
+res://scenes/magic/black_hole.tscn
+res://shaders/abilities/gravity/black_hole.gdshader
+res://scripts/magic/black_hole.gd
