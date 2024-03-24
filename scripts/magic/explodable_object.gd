@@ -15,3 +15,4 @@ func explode(pos, radius, slow_duration, damage, slow_power = 0.4):
 	
 	await get_tree().create_timer(1, false).timeout
 	queue_free()
+	

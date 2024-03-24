@@ -15,7 +15,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="ExplosionParticle" type="AnimatedSprite2D"]
+[node name="Projectile" type="AnimatedSprite2D"]
 scale = Vector2(0.01, 0.01)
 sprite_frames = SubResource("SpriteFrames_chx8w")
 script = ExtResource("2_3pnf2")

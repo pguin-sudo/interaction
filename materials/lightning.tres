@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cx8xn5ldnrl7s"]
+
+[ext_resource type="Shader" path="res://shaders/abilities/electromagnetism/short_circuit.gdshader" id="1_go6vf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_go6vf")

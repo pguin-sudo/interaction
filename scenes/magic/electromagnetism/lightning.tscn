@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://byp1mh4rmkrpr"]
+
+[ext_resource type="Script" path="res://scripts/magic/lightning.gd" id="1_cjr5p"]
+[ext_resource type="Material" uid="uid://cx8xn5ldnrl7s" path="res://materials/lightning.tres" id="2_x7gnr"]
+
+[sub_resource type="Gradient" id="Gradient_gdetq"]
+colors = PackedColorArray(0.584314, 1, 1, 1, 0.584314, 1, 1, 0.921569)
+
+[node name="Lightning" type="Line2D"]
+points = PackedVector2Array(131, 86, 325, 60, 338, 197, 118, 204, 492, 252)
+width = 1.0
+default_color = Color(0.584314, 1, 1, 1)
+gradient = SubResource("Gradient_gdetq")
+texture_mode = 2
+joint_mode = 1
+sharp_limit = 0.0
+antialiased = true
+script = ExtResource("1_cjr5p")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = ExtResource("2_x7gnr")
+offset_right = 40.0
+offset_bottom = 40.0

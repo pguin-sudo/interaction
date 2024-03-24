@@ -20,7 +20,7 @@ var total_score: int = 0
 ## Initial Constants
 const INITIAL_HEALTH = 100.0
 const INITIAL_REGENERATION = 0.1
-const INITIAL_PROTECTION = 0.1
+const INITIAL_PROTECTION = 1 ## KOSYIL
 const INITIAL_SPIKES = 0
 const INITIAL_SPEED = 300.0
 const INITIAL_CRITICAL_STRIKE_POWER = 5
@@ -30,10 +30,10 @@ const INITIAL_CHARACTER_SIZE = 1.0
 ## Coefficients - Adjust these to scale the effects of various stats
 var health_coefficient = 1.0
 var regeneration_coefficient = 1.0
-var damage_coefficient = 1.0
+var damage_coefficient = 1.0 
 var protection_coefficient = 1.0
 var spikes_coefficient = 1.0
-var speed_coefficient = 1.0
+var speed_coefficient = 1.0 
 var cooldown_coefficient = 1.0
 var duration_of_spells_coefficient = 1.0
 var spell_size_coefficient = 1.0
@@ -120,6 +120,8 @@ func _process(delta):
 
 func take_damage(damage, is_critical = false):
 	var actual_damage = damage * (1 - (INITIAL_PROTECTION * protection_coefficient + protection_increase))
+	if actual_damage < 0:
+		actual_damage = 0
 	health_current -= actual_damage
 	ui.update_health(health_current, INITIAL_HEALTH * health_coefficient + health_increase)
 	DamageNumbers.display_number(actual_damage, $damage_spawn.global_position, is_critical)

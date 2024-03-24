@@ -5,7 +5,7 @@ var rng = RandomNumberGenerator.new()
 
 var enemy_res: String = "res://scenes/enemy_based.tscn"
 var enemies: int = 0
-var max_enemies: float = 200.0 ## KOSTYL
+var max_enemies: float = 100.0 ## KOSTYL
 var min_radius: float = 1100.0
 var max_radius: float = 1500.0
 var score_points: int = 75

@@ -1,3 +1,7 @@
+res://shaders
+res://materials
+res://scripts/magic
+res://shaders/abilities/electromagnetism
 res://scenes/magic
 C:/Users/mocviu/Documents/GitHub/interaction/builds
 res://scripts/interface
@@ -9,7 +13,6 @@ res://themes
 res://sprites/interface/abilities
 res://scripts
 res://sprites/abilities
-res://scripts/magic
 res://scenes
 res://sprites
 res://frames

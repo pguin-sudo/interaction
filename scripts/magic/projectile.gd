@@ -26,3 +26,4 @@ func _process(delta):
 		duration -= delta
 	else:
 		queue_free()
+
