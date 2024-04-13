@@ -20,11 +20,14 @@ sources/0 = SubResource("TileSetAtlasSource_d6u2t")
 [node name="Node2D" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("2_fed4j")]
-platform_floor_layers = 4294967231
+light_mask = 512
+visibility_layer = 512
+z_index = 10
 
 [node name="CharacterBody2D" parent="." groups=["Enemy"] instance=ExtResource("4_6iag2")]
 
 [node name="TileMap" type="TileMap" parent="."]
+z_index = 1
 tile_set = SubResource("TileSet_68dmg")
 format = 2
 layer_0/z_index = -100

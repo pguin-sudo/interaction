@@ -26,10 +26,16 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 
 [node name="BlackHole" type="Node2D"]
+light_mask = 16
+visibility_layer = 16
+z_index = 5
+y_sort_enabled = true
 script = ExtResource("1_gr3d8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
-z_index = 50
+light_mask = 16
+visibility_layer = 16
+z_index = 5
 material = SubResource("ShaderMaterial_b3lhf")
 texture = SubResource("GradientTexture2D_m8h31")

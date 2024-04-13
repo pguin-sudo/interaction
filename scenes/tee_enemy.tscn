@@ -10,6 +10,10 @@ radius = 38.0132
 radius = 50.8035
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+light_mask = 512
+visibility_layer = 512
+z_index = 10
+y_sort_enabled = true
 position = Vector2(0, -1113)
 script = ExtResource("1_ik3du")
 

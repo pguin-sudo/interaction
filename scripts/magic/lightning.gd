@@ -9,14 +9,16 @@ var divider: float = 5
 var points_lerp: Array = []
 var sway_float: float
 var sway_divader: float = 20
-var start: Node2D = null
-var end: Node2D = null
+var start: EnemyBased = null
+var end: EnemyBased = null
 
-func set_start(node: Node2D):
+var damage: float = 5.0;
+
+func set_start(node: EnemyBased):
 	start = node
 	add_point(node.global_position)
 
-func set_end(node: Node2D):
+func set_end(node: EnemyBased):
 	end = node
 	add_point(node.global_position)
 
@@ -47,6 +49,8 @@ func _process(delta):
 	if not start or not end:
 		end_charge()
 	else:
+		start.take_damage(damage)
+		end.take_damage(damage)
 		points[0] = start.global_position
 		points[1] = end.global_position
 		var from_to = end.global_position - start.global_position

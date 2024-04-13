@@ -10,6 +10,9 @@ radius = 38.0132
 radius = 50.8035
 
 [node name="EnemyBased" type="CharacterBody2D" groups=["Enemy"]]
+light_mask = 512
+visibility_layer = 512
+z_index = 10
 y_sort_enabled = true
 motion_mode = 1
 script = ExtResource("1_1wfoy")
@@ -19,6 +22,9 @@ shape = SubResource("CircleShape2D_0pumx")
 one_way_collision_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+light_mask = 512
+visibility_layer = 512
+z_index = 10
 y_sort_enabled = true
 sprite_frames = ExtResource("2_i2pac")
 autoplay = "default"
@@ -33,6 +39,9 @@ shape = SubResource("CircleShape2D_d776l")
 disabled = true
 
 [node name="damage_spawn" type="Node2D" parent="."]
+light_mask = 512
+visibility_layer = 512
+z_index = 10
 position = Vector2(0, -63)
 
 [node name="skills" type="Node" parent="."]
